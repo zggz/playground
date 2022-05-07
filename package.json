@@ -1,0 +1,22 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "代码试炼场",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zggz/playground.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zggz/playground/issues"
+  },
+  "homepage": "https://github.com/zggz/playground#readme",
+  "dependencies": {
+    "typescript": "^4.6.4"
+  }
+}
