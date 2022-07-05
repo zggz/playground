@@ -1,0 +1,26 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zggz/playground.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zggz/playground/issues"
+  },
+  "homepage": "https://github.com/zggz/playground#readme",
+  "dependencies": {
+    "@types/fabric": "^4.5.9",
+    "fabric": "^5.2.1",
+    "pixi.js": "^6.4.2",
+    "vite": "^2.9.13"
+  }
+}
