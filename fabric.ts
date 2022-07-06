@@ -5,30 +5,32 @@
 import { fabric } from "fabric";
 
 interface RectType {
-  coords: [number, number]; // 起点
+  coords: [number, number, number, number]; // 起点
   rotate: number;
-  length: number;
+  group: {
+    top: number;
+    left: number;
+  };
   name: string;
 }
-function makeGroup({ coords, rotate, length, name }: RectType) {
-  const height = length * Math.sin((rotate * Math.PI) / 180);
-  const width = length * Math.cos((rotate * Math.PI) / 180);
-    console.log(coords, height, width)
-   const line =  makeLine([0,0,width, height])
-    console.log([coords[0],coords[1],coords[0], coords[1]])
-  const rect =  new fabric.Rect({
-    top:110,
+function makeGroup({ coords, group, name, rotate }: RectType) {
+  const line = makeLine(coords);
+  const rect = new fabric.Rect({
+    top: 110,
     left: 110,
-    width: width,
-    height: height,
-    fill: "red",
+    width: 100,
+    height: 50,
+    fill: "white",
+    stroke: "red",
+    strokeWidth: 4,
     selectable: false,
     name: name,
   });
-   return new fabric.Group([line,rect],{
-        left:coords[0] + width,
-        top:coords[1],
-    })
+  return new fabric.Group([line, rect], {
+    left: group.left,
+    top: group.top,
+    angle: rotate,
+  });
 }
 function makeLine(coords) {
   return new fabric.Line(coords, {
@@ -61,17 +63,33 @@ class FishBone {
   }
 
   renderRoot() {
-   return  this.add(makeLine([0, this.height / 2, this.width, this.height / 2]));
+    return this.add(
+      makeLine([0, this.height / 2, this.width, this.height / 2])
+    );
   }
 
-  renderGroup(){
-     const r = makeGroup({
-          coords:[0,this.height / 2],
-          length:100,
-          rotate:60,
-          name: 'first'
-      })
-     return  this.add(r)
+  renderGroup() {
+    const r = makeGroup({
+      coords: [0, 0, 200, 200],
+
+      rotate: 0,
+      group: {
+        left: 10,
+        top: this.height / 2,
+      },
+      name: "first",
+    });
+      const s = makeGroup({
+          coords: [0, 0, 200, 200],
+
+          rotate: -90,
+          group: {
+              left: 40,
+              top: this.height / 2 + 4,
+          },
+          name: "second",
+      });
+    return this.add(r).add(s);
   }
 
   add(obj: fabric.Object) {
