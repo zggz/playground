@@ -15,9 +15,16 @@ interface RectType {
 }
 function makeGroup({ coords, group, name, rotate }: RectType) {
   const line = makeLine(coords);
+  const text = new fabric.Text("I'm at fontSize 40", {
+    fontSize: 20,
+    fill: 'pink',
+    top: 20,
+    left:0,
+    angle: 45
+  });
   const rect = new fabric.Rect({
-    top: 110,
-    left: 110,
+    top: 200 * Math.sin(45 * Math.PI / 180),
+    left: 0,
     width: 100,
     height: 50,
     fill: "white",
@@ -26,7 +33,7 @@ function makeGroup({ coords, group, name, rotate }: RectType) {
     selectable: false,
     name: name,
   });
-  return new fabric.Group([line, rect], {
+  return new fabric.Group([line, rect, text], {
     left: group.left,
     top: group.top,
     angle: rotate,
@@ -71,20 +78,19 @@ class FishBone {
   renderGroup() {
     const r = makeGroup({
       coords: [0, 0, 200, 200],
-
       rotate: 0,
       group: {
         left: 10,
-        top: this.height / 2,
+        top: this.height / 2 - 200,
       },
       name: "first",
     });
       const s = makeGroup({
-          coords: [0, 0, 200, 200],
+          coords: [200, 0, 0, 200],
 
-          rotate: -90,
+          rotate: 0,
           group: {
-              left: 40,
+              left: 240,
               top: this.height / 2 + 4,
           },
           name: "second",
